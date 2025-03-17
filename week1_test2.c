@@ -6,8 +6,30 @@ typedef struct block {
     struct block *l, *r;
 } block_t;
 
-block_t **find_free_tree(block_t **root, block_t *target);
-block_t *find_predecessor_free_tree(block_t **root, block_t *node);
+block_t **find_free_tree(block_t **root, block_t *target) {
+    block_t **p = root;
+    while (*p && *p != target) {
+        if (target->size < (*p)->size)
+            p = &((*p)->l);
+        else if (target->size > (*p)->size)
+            p = &((*p)->r);
+        else {
+            p = &((*p)->l);
+        }
+    }
+    return p;
+}
+
+block_t *find_predecessor_free_tree(block_t **root, block_t *node) {
+    if (!node->l)
+        return NULL;
+    
+    block_t *pred = node->l;
+    while (pred->r)
+        pred = pred->r;
+    return pred;
+}
+
 
 /*
  * Structure representing a free memory block in the memory allocator.
