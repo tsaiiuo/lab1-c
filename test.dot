@@ -1,0 +1,30 @@
+digraph SinglyLinkedList {
+    // 讓圖形由左到右排列
+    rankdir=LR;
+    
+    // 定義 head 為一個點
+    // head [shape=circle, label="head", width=1, height=1, fixedsize=true];
+
+    
+    // 定義單向鏈表的節點，每個節點分成兩個區塊：value 和 next
+    pivot [shape=box, label="pivot"];
+    item1 [shape=box, label=" 3 "];
+    head  [shape=box, label=" head "]; 
+    less  [shape=box, label=" list_less "]; 
+    great  [shape=box, label=" list_greater "];    
+    item2 [shape=box, label=" 1 "];    
+    item3 [shape=box, label=" 2 "];
+    item4 [shape=box, label=" 5 "];
+    item5 [shape=box, label=" 4 "];
+    {rank=same item1 pivot }
+    // head 指向第一個節點的 value 區塊
+    pivot -> item1;
+    
+    // 建立節點之間的連結 (由當前節點的 next 指向下一個節點的 value 區塊)
+    // item1-> item2;
+    less -> item2;
+    item2 -> item3;
+
+    great -> item4;
+    item4 -> item5;
+}
